@@ -1,0 +1,43 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block body %}
+
+<h4>Welcome</h4> 
+
+<script>
+  function copyToClipboard(){     
+    let inp = document.getElementById("short-url");
+    navigator.clipboard.writeText(inp.value);
+  }
+</script>
+<form method="POST">
+  <div>
+    <input type="text" class="form-control" name="url" placeholder="Enter URL here" required>
+
+  </div>
+  <center>
+    <button type="submit" name="service" value="isgd" class="btn btn-dark" style="margin-top: 2rem; margin-bottom: 2rem;">Shorten using is.gd</button>
+    <button type="submit" name="service" value="bitly" class="btn btn-dark" style="margin-top: 2rem; margin-bottom: 2rem;">Shorten using bit.ly</button>
+  </center>
+</form>
+
+{% if error %}
+    <div class="alert alert-danger">{{ error }}</div>
+{% endif %}
+
+{% if short_url %}
+  <div>
+    <label for="short-url">Shortened URL</label>
+    <div class="input-group">
+      <input type="text" class="form-control" id="short-url" value="{{ short_url }}" readonly>
+      <center>
+        <button type="button" class="btn btn-secondary" onclick="return copyToClipboard()">Copy</button>
+      </center>
+    </div>
+  </div>
+{% endif %}
+{% endblock %}

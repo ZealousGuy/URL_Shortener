@@ -1,0 +1,36 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    HISTORY
+{% endblock %}
+
+{% block body %}
+    <h1>History</h1>
+
+
+    {% if urls %}
+      <table class="table" style="color: azure;">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Original URL</th>
+            <th scope="col">Shortened URL</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {% for url in urls %}
+            <tr>
+              <th scope="row">{{ loop.index }}</th>
+              <td>{{ url.orig }}</td>
+              <td><a href="{{ url.short }}">{{ url.short }}</a></td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+
+    {% else %}
+      <p>No URLs found.</p>
+    {% endif %}
+{% endblock %}
