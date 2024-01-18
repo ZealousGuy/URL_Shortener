@@ -51,7 +51,7 @@ def home():
         if not short_url:
             return render_template("home.html",error="Error: could not shorten URL.")
 
-        # urls.append((url,short_url))
+
         new_url_obj=Url(url,short_url) 
         db.session.add(new_url_obj)
         db.session.commit()
